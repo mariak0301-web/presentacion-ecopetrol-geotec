@@ -2490,8 +2490,9 @@ body{
    ============================================================ */
 .hero-fauna{
   bottom:clamp(1.8rem, 5vw, 4.5rem) !important;
-  z-index:40 !important;
-  opacity:.46 !important;
+  z-index:999 !important;
+  opacity:1 !important;
+  filter:saturate(1.08) contrast(1.04) drop-shadow(0 22px 42px rgba(0,0,0,.24)) !important;
   pointer-events:none;
 }
 
