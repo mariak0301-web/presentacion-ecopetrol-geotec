@@ -2496,11 +2496,12 @@ body{
   pointer-events:none;
 }
 
-.hero .container,
-.hero .weave{
+.hero .container{
   position:relative;
+  z-index:10;
 }
 
-.hero .container{
-  z-index:10;
+.hero .weave{
+  position:absolute !important;
+  inset:0 !important;
 }
