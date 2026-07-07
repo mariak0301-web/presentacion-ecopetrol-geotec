@@ -2484,3 +2484,22 @@ body{
   position:relative;
   z-index:1;
 }
+
+/* ============================================================
+   V4.8 — Garza más alta y por encima del hero
+   ============================================================ */
+.hero-fauna{
+  bottom:clamp(1.8rem, 5vw, 4.5rem) !important;
+  z-index:40 !important;
+  opacity:.46 !important;
+  pointer-events:none;
+}
+
+.hero .container,
+.hero .weave{
+  position:relative;
+}
+
+.hero .container{
+  z-index:10;
+}
