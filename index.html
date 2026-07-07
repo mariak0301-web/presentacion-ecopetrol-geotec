@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Técnica · Factores 12.4.1 y 12.4.4 — GEOTEC × Ecopetrol</title>
+<meta name="description" content="Modelo de aseguramiento de estudios ambientales y analítica de datos en campo — GEOTEC InnoLab para Ecopetrol S.A.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="brand-lockup">
+    <img src="assets/logo_geotec_horizontal_star.png" alt="GEOTEC Ingeniería Ltda." class="logo" width="549" height="143">
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#inicio" class="active">Inicio</a></li>
+    <li><a href="#diagnostico">Diagnóstico</a></li>
+    <li><a href="#metodologia">Metodología</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#aseguramiento">Factores</a></li>
+    <li><a href="#herramientas">Herramientas</a></li>
+    <li><a href="#alianza">Alianza</a></li>
+    <li><a href="#documento">Documento</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <img src="assets/logo_ecopetrol_h.png" alt="Ecopetrol S.A." class="client-logo" width="386" height="156">
+</nav>
+
+<!-- ================= HERO ================= -->
+<header id="inicio" class="hero">
+  <div class="weave"></div>
+  <img src="assets/animal_garza.png" alt="" class="hero-fauna" aria-hidden="true">
+  <div class="container">
+    <div class="hero-alliance">
+      <span class="label">Propuesta técnica de aseguramiento ambiental</span>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Factores 12.4.1 y 12.4.4</p>
+        <h1 class="reveal">La calidad se construye desde el primer dato <em>y se valida al final.</em></h1>
+        <p class="hero-lede reveal">GEOTEC InnoLab distribuye el control de calidad a lo largo de las tres fases del estudio ambiental, en lugar de concentrarlo en una revisión de última hora. <strong>68 herramientas en producción activa y 19 en etapa beta</strong>, validadas en proyectos reales del sector hidrocarburos, dentro de un catálogo de 110 iniciativas cuyo restante está en fase de formulación.</p>
+        <div class="hero-cta-row reveal">
+          <a href="#diagnostico" class="btn">Ver el modelo completo</a>
+          <a href="#aseguramiento" class="btn btn-ghost">Ir a los factores 12.4.1 / 12.4.4</a>
+        </div>
+        <p class="doc-ref-inline reveal">Resumen interactivo del documento técnico <a href="#documento">Propuesta Técnica — Factores 12.4.1 y 12.4.4 (V4)</a>, que amplía cada sección de esta presentación.</p>
+      </div>
+
+      <div class="hero-stats reveal">
+        <div class="hero-stat">
+          <div class="num"><span data-count="68">0</span><span class="unit">%</span></div>
+          <div class="label">de las Verificaciones Preliminares de Documentos no fueron aprobadas por la ANLA en 2024 — <a class="source-link source-link--dark" href="https://www.anla.gov.co/images/documentos/informes/2025-01-30-anla-InformeGestion-2024.pdf" target="_blank" rel="noopener">Informe de Gestión ANLA</a></div>
+        </div>
+        <div class="hero-stat">
+          <div class="num"><span data-count="15">0</span><span class="unit">min</span></div>
+          <div class="label">para validar una GDB completa con VALIDA_APP, frente a 1 día de revisión manual</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num"><span data-count="68">0</span><span class="unit">+19</span></div>
+          <div class="label">herramientas en producción activa + 19 en beta al cierre de 2025 — catálogo InnoLab de 110 iniciativas, el resto en formulación</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-cue"><span>Desplázate</span><span class="line"></span></div>
+</header>
+
+<!-- ================= DIAGNÓSTICO ================= -->
+<section id="diagnostico" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">El punto de partida</p>
+      <h2>Dos realidades del licenciamiento ambiental en Colombia</h2>
+      <p>El diagnóstico no es una hipótesis: son los datos oficiales de la ANLA y las condiciones reales de operación en bloques de hidrocarburos.</p>
+    </div>
+
+    <figure class="sector-visual reveal">
+      <img src="assets/sector_hidrocarburos.jpg" alt="Operación de hidrocarburos al atardecer">
+      <figcaption>Contexto operativo: estudios ambientales para activos energéticos con exigencia técnica, trazabilidad y control documental.</figcaption>
+    </figure>
+
+    <div class="diag-block reveal">
+      <div class="diag-head">
+        <h3>Problema 1 — Calidad de los expedientes ante la ANLA</h3>
+        <span class="diag-stat-badge">15% de causales = errores GDB</span>
+      </div>
+      <div class="card-grid">
+        <div class="diag-card">
+          <span class="icon">COSTO</span>
+          <h4>Semanas de reproceso</h4>
+          <p>Un hallazgo tardío obliga a corregir la capa afectada, el texto del informe, los mapas temáticos y las tablas de resultados — y volver a radicar.</p>
+        </div>
+        <div class="diag-card">
+          <span class="icon">CADENA</span>
+          <h4>Riesgo de no conformidad en cadena</h4>
+          <p>Un error en una capa de la GDB genera tres inconsistencias adicionales: texto del EIA, tablas del informe y mapa temático correspondiente.</p>
+        </div>
+        <div class="diag-card">
+          <span class="icon">VISIBILIDAD</span>
+          <h4>El supervisor se entera tarde</h4>
+          <p>Sin instrumentación, el coordinador de ODS no ve el estado real de la GDB hasta que el contratista reporta — cuando ya es tarde para corregir sin afectar el cronograma.</p>
+        </div>
+      </div>
+      <div class="diag-note">
+        <strong>68% de las VPD no fueron aprobadas en 2024</strong> (<a class="source-link" href="https://www.anla.gov.co/images/documentos/informes/2025-01-30-anla-InformeGestion-2024.pdf" target="_blank" rel="noopener">167 de 246, Informe de Gestión ANLA 2024</a>) — cifra que se mantuvo en <a class="source-link" href="https://www.anla.gov.co/images/documentos/ren_cuentas/2025/2025-08-16-anla-InformeRendicionCuentas-2024-2025.pdf" target="_blank" rel="noopener">69% entre julio de 2024 y junio de 2025</a>. Las inconsistencias en el modelo de almacenamiento geográfico son una causal recurrente reportada por la propia autoridad.
+      </div>
+    </div>
+
+    <div class="diag-block reveal">
+      <div class="diag-head">
+        <h3>Problema 2 — Condiciones de campo</h3>
+        <span class="diag-stat-badge">Sin cobertura · sin acceso · sin respaldo</span>
+      </div>
+      <div class="card-grid">
+        <div class="diag-card">
+          <span class="icon">RED</span>
+          <h4>Conectividad nula o intermitente</h4>
+          <p>En bloques operativos activos y zonas de exploración la cobertura móvil es inexistente. Los formularios convencionales requieren conexión.</p>
+        </div>
+        <div class="diag-card">
+          <span class="icon">ACCESO</span>
+          <h4>Acceso restringido</h4>
+          <p>Vías terciarias o acceso fluvial, ventanas operativas reducidas por seguridad y temporadas de lluvia que cierran accesos por semanas.</p>
+        </div>
+        <div class="diag-card">
+          <span class="icon">RIESGO</span>
+          <h4>Pérdida de datos</h4>
+          <p>Formularios en papel, transcripción manual y falta de respaldo incrementan el riesgo de pérdida o alteración del dato primario.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="weave-divider" aria-hidden="true"></div>
+
+<!-- ================= CLIENTES ================= -->
+<section class="section clients-section" aria-label="Algunos de nuestros clientes">
+  <div class="container">
+    <div class="clients-belt reveal">
+      <p class="clients-head">Algunos de nuestros clientes</p>
+      <div class="marquee-outer"><div class="marquee-track" id="mq1"></div></div>
+      <div class="marquee-outer"><div class="marquee-track rev" id="mq2"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="weave-divider" aria-hidden="true"></div>
+
+<!-- ================= METODOLOGÍA ================= -->
+<section id="metodologia" class="section section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">El modelo</p>
+      <h2>Un hilo continuo, no un checklist al final</h2>
+      <p>El principio central: prevenir cuesta menos que corregir. Las herramientas de GEOTEC actúan en la fuente del dato, no en el síntoma.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-track"></div>
+
+      <div class="t-item reveal">
+        <div class="t-num">1</div>
+        <div>
+          <p class="t-when">Pre-campo · Semanas 1–8</p>
+          <h3>El dato nace alineado al estándar</h3>
+          <p class="t-lead">Antes de la primera campaña, los formularios se configuran con los dominios del MAG ANLA. El control opera en campo, no en oficina.</p>
+        </div>
+        <div class="t-side">
+          <ul class="t-list">
+            <li>Diagnóstico estructural preliminar con VALIDA_APP sobre las GDB y cartografía que entrega Ecopetrol — los errores heredados se aíslan antes de propagarse al nuevo estudio</li>
+            <li>Directorio cartográfico oficial de 31 entidades en MAGNA-SIRGAS</li>
+            <li>Configuración homogénea de todos los dispositivos de campo</li>
+            <li>Alistamiento de ODS: alcance, matriz de riesgos y lista de chequeo precampo</li>
+            <li>Punto de control de conceptualización interdisciplinario</li>
+            <li>Instrumentos offline para Consulta Previa y participación comunitaria</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-num">2</div>
+        <div>
+          <p class="t-when">Campo · Semanas 9–41</p>
+          <h3>Captura con calidad incorporada</h3>
+          <p class="t-lead">QField captura sin conexión. Los datos no se transcriben: se sincronizan directo a un GeoPackage con la estructura del MAG.</p>
+        </div>
+        <div class="t-side">
+          <ul class="t-list">
+            <li>Captura sin conexión, sincronización al recuperar señal</li>
+            <li>Curvas de acumulación: suficiencia estadística en tiempo real</li>
+            <li>Registro fotográfico georreferenciado (GEOTAC)</li>
+            <li>Cuatro protocolos según la restricción: sin conectividad, sin acceso terrestre, alta sensibilidad ambiental, y conflictividad social o de seguridad</li>
+            <li>Captura con sabedores locales entrenados en QField — vinculación laboral inclusiva (Anexo 11) conforme a GDE-P-008 y GDE-G-006</li>
+            <li>Control diario de completitud: programado vs. ejecutado, muestras con cadena de custodia y novedades</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-num">3</div>
+        <div>
+          <p class="t-when">Post-campo · Semanas 10–66</p>
+          <h3>Certificación antes de la entrega</h3>
+          <p class="t-lead">La geodatabase se verifica capa por capa antes de su radicación ante la ANLA.</p>
+        </div>
+        <div class="t-side">
+          <ul class="t-list">
+            <li>12 validadores Excel, uno por componente del MAG</li>
+            <li>Validación cruzada de informes de laboratorio acreditado IDEAM</li>
+            <li>VALIDA_APP: 15 módulos, 15 minutos de validación completa</li>
+            <li>Matriz de coherencia GDB–texto–mapas + acta de cierre de calidad</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="diag-block reveal" style="margin-top:4rem;">
+      <div class="diag-head">
+        <h3>Principios operativos del modelo</h3>
+        <span class="diag-stat-badge">9 reglas no negociables</span>
+      </div>
+      <div class="team-grid">
+        <div class="team-item"><h4>Coherencia integral</h4><p>La información guarda continuidad entre capítulos, tablas, mapas, anexos, bases de datos y GDB del estudio.</p></div>
+        <div class="team-item"><h4>Foco en lo significativo</h4><p>La revisión prioriza los aspectos que inciden en la viabilidad socioambiental y la evaluación de impactos.</p></div>
+        <div class="team-item"><h4>Trazabilidad documental</h4><p>Cada dato relevante es rastreable hasta su fuente: formato de campo, soporte, laboratorio o registro fotográfico.</p></div>
+        <div class="team-item"><h4>Control interdisciplinario</h4><p>Los estudios son revisados por especialistas de los medios abiótico, biótico, socioeconómico, SIG/GDB y gestión documental.</p></div>
+        <div class="team-item"><h4>Uso responsable de tecnología e IA</h4><p>Las herramientas digitales e IA apoyan la validación y la revisión cruzada, siempre bajo supervisión técnica especializada.</p></div>
+        <div class="team-item"><h4>Adaptabilidad por ODS</h4><p>El nivel de detalle del aseguramiento se ajusta al tipo de estudio, complejidad territorial, autoridad y cronograma.</p></div>
+        <div class="team-item"><h4>Cierre verificable</h4><p>Ningún entregable se cierra sin lista de chequeo, control de observaciones, validación SIG/GDB y aprobación del equipo de aseguramiento.</p></div>
+        <div class="team-item"><h4>Trazabilidad para SosTECnibilidad</h4><p>El sistema genera evidencia auditable para el reporte corporativo: registros en SiB Colombia, hectáreas caracterizadas y especies por componente.</p></div>
+        <div class="team-item"><h4>Mejora continua al ritmo de la ANLA</h4><p>Actualizaciones de la Resolución 2182, nuevos TDR o cambios de dominios del MAG se incorporan en el ciclo que el proyecto demanda, sin depender de proveedores externos.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EQUIPO Y EXPERTICIA ================= -->
+<section id="equipo" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Equipo y criterio profesional</p>
+      <h2>La tecnología escala el criterio profesional, no lo reemplaza</h2>
+      <p>Cada validador, cada formulario y cada automatización nació de problemas reales identificados en campo y en procesos de validación con la ANLA — no son desarrollos genéricos. GEOTEC participa en las etapas críticas de decisión del estudio (revisión de alcances, validación de insumos, mesas de avance y cierre de expediente) como interlocutor técnico, no solo como ejecutor.</p>
+    </div>
+
+    <div class="diag-block reveal">
+      <div class="diag-head">
+        <h3>Estructura del equipo de aseguramiento por ODS</h3>
+      </div>
+      <div class="team-grid">
+        <div class="team-item"><h4>Director o coordinador del estudio</h4><p>Responsable del cumplimiento técnico, contractual y del PDT.</p></div>
+        <div class="team-item"><h4>Líder de aseguramiento de calidad</h4><p>Activa los puntos de control por fase, consolida observaciones y verifica su cierre antes de cada entrega.</p></div>
+        <div class="team-item"><h4>Especialista SIG/GDB</h4><p>Responsable de la consistencia cartográfica, la estructura de la geodatabase, los metadatos y el modelo de almacenamiento geográfico.</p></div>
+        <div class="team-item"><h4>Especialistas temáticos</h4><p>Abiótico, biótico, socioeconómico-cultural, permisos ambientales, evaluación de impactos y zonificación.</p></div>
+        <div class="team-item"><h4>Gestión documental</h4><p>Orden, nomenclatura, soportes, anexos, control de versiones y cierre documental.</p></div>
+        <div class="team-item"><h4>Apoyo digital y analítica</h4><p>Tableros de seguimiento, bases de datos, formularios digitales, validaciones automáticas y reportes de avance.</p></div>
+      </div>
+    </div>
+
+    <div class="diag-block reveal">
+      <div class="diag-head">
+        <h3>Triple control antes de cada entrega parcial</h3>
+        <span class="diag-stat-badge">Automatizado + especialista + líder</span>
+      </div>
+      <div class="expertise-flow">
+        <div class="expertise-step">
+          <span class="n">01</span>
+          <h4>Líder de proyecto</h4>
+          <p>Verifica la trazabilidad documental antes de enviar al supervisor de ODS.</p>
+        </div>
+        <div class="expertise-step">
+          <span class="n">02</span>
+          <h4>Especialista temático</h4>
+          <p>Valida el contenido técnico del componente: abiótico, biótico o socioeconómico.</p>
+        </div>
+        <div class="expertise-step">
+          <span class="n">03</span>
+          <h4>Especialista SIG</h4>
+          <p>Revisa la coherencia espacial de la geodatabase frente al resto del expediente.</p>
+        </div>
+      </div>
+      <div class="diag-note">
+        Esta combinación de capacidad humana y herramienta tecnológica garantiza que el control de calidad no dependa de un solo instrumento: el criterio profesional y la automatización actúan en paralelo.
+      </div>
+    </div>
+
+    <div class="diag-block reveal">
+      <div class="diag-head">
+        <h3>Especialistas del equipo técnico</h3>
+      </div>
+      <div class="norm-strip">
+        <span class="norm-pill"><b>GIS ambiental</b> · dominio MAG ANLA (Res. 2182)</span>
+        <span class="norm-pill"><b>Biólogos</b> · línea base bajo estándares ANLA-Ecopetrol</span>
+        <span class="norm-pill"><b>Profesionales sociales</b> · protocolos HSE-G-163</span>
+        <span class="norm-pill"><b>Técnicos de campo</b> · captura digital con QField</span>
+      </div>
+    </div>
+
+    <div class="diag-block reveal">
+      <div class="diag-head">
+        <h3>Programa de Formación e Inteligencia Tecnológica — InnoLab CAP</h3>
+        <span class="diag-stat-badge">El equipo evoluciona con las herramientas</span>
+      </div>
+      <div class="team-grid">
+        <div class="team-item"><h4>Formación en IA aplicada</h4><p>Cada especialista incorpora modelos de lenguaje, automatización con IA generativa y análisis de datos en su trabajo diario — no solo el área de tecnología.</p></div>
+        <div class="team-item"><h4>Tecnologías disruptivas para licenciamiento</h4><p>Programas prácticos sobre captura digital con QField, procesamiento geoespacial automatizado, validación de geodatabases, analítica biótica y abiótica, y uso de drones (UAS) bajo la guía GSE-G-007 de Ecopetrol.</p></div>
+        <div class="team-item"><h4>Red de Champions InnoLab</h4><p>Profesionales referentes por componente que actúan como primeros usuarios de las herramientas, retroalimentan su evolución y capacitan a sus pares en cada proyecto.</p></div>
+        <div class="team-item"><h4>Transferencia al contrato</h4><p>El equipo asignado a cada ODS recibe inducción específica en las herramientas aplicables. No se asume conocimiento previo: se garantiza la operación correcta desde la primera campaña.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ASEGURAMIENTO (12.4.1 / 12.4.4) ================= -->
+<section id="aseguramiento" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Factores de evaluación</p>
+      <h2>Dos factores, un mismo propósito</h2>
+      <p>El alcance de esta propuesta cubre los dos factores técnicos de evaluación del proceso. Ambos convergen en asegurar que los estudios ambientales sean sólidos, coherentes y radicables con el menor nivel posible de observaciones.</p>
+    </div>
+
+    <div class="tender-scope reveal">
+      <div class="tender-card">
+        <svg class="tender-art" viewBox="0 0 76 76" fill="none" aria-hidden="true">
+          <ellipse cx="30" cy="18" rx="20" ry="7" stroke="#626C10" stroke-width="2.5"/>
+          <path d="M10 18v26c0 3.9 9 7 20 7 3 0 6-.2 8.6-.7" stroke="#626C10" stroke-width="2.5"/>
+          <path d="M50 18v14" stroke="#626C10" stroke-width="2.5"/>
+          <path d="M10 31c0 3.9 9 7 20 7 4.4 0 8.5-.5 11.8-1.3" stroke="#626C10" stroke-width="2.5" opacity=".55"/>
+          <path d="M56 38l12 4v9c0 8-5 13-12 16-7-3-12-8-12-16v-9l12-4z" fill="#F5C400" stroke="#363B12" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M50 51l4.5 4.5L63 47" stroke="#363B12" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="tender-label">Pliego · Numeral 12.4.1</span>
+        <h3>Modelo de aseguramiento de estudios ambientales</h3>
+        <p class="tender-quote">"El oferente deberá presentar un documento técnico, en el formato que considere, que acredite que cuenta con una estrategia integral de aseguramiento para garantizar la calidad de los estudios ambientales."</p>
+        <p class="tender-caption">Criterios valorados sobre los entregables allegados:</p>
+        <div class="tender-criteria">
+          <span class="crit-chip"><b>1</b> Herramientas tecnológicas / IA (GDB-MAG coherencia)</span>
+          <span class="crit-chip"><b>2</b> Mecanismos de verificación y control de calidad</span>
+        </div>
+      </div>
+      <div class="tender-card">
+        <svg class="tender-art" viewBox="0 0 76 76" fill="none" aria-hidden="true">
+          <rect x="14" y="8" width="30" height="56" rx="6" stroke="#626C10" stroke-width="2.5"/>
+          <path d="M25 13h8" stroke="#626C10" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M29 46c-5.5-6-8-10-8-14a8 8 0 0 1 16 0c0 4-2.5 8-8 14z" fill="#F5C400" stroke="#363B12" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="29" cy="31.5" r="2.6" fill="#363B12"/>
+          <path d="M52 64V52M60 64V44M68 64V36" stroke="#D79E00" stroke-width="5" stroke-linecap="round"/>
+          <path d="M52 16c4-4 12-4 16 0M55.5 21.5c2.5-2.5 6.5-2.5 9 0" stroke="#626C10" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="60.5" cy="26.5" r="2" fill="#626C10"/>
+        </svg>
+        <span class="tender-label">Pliego · Numeral 12.4.4</span>
+        <h3>Analítica para procesamiento y recolección de datos</h3>
+        <p class="tender-quote">"El oferente deberá presentar un documento técnico con propuesta de inclusión de analítica de datos y de captura de datos en áreas difíciles a implementar en la elaboración de estudios ambientales."</p>
+        <p class="tender-caption">Criterios valorados sobre los entregables allegados:</p>
+        <div class="tender-criteria">
+          <span class="crit-chip"><b>1</b> Metodología con analítica de datos</span>
+          <span class="crit-chip"><b>2</b> Estrategias de captura en áreas difíciles</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <article class="pillar reveal">
+        <span class="pillar-tag">Factor 12.4.1</span>
+        <h3>Aseguramiento de estudios ambientales</h3>
+        <p class="pillar-sub">Herramientas tecnológicas / IA y mecanismos de verificación y control de calidad.</p>
+        <div class="pillar-mech"><span class="n">01</span><div><h4>Listas de chequeo por fase</h4><p>Ninguna fase avanza sin que el líder de aseguramiento confirme el cierre del chequeo anterior.</p></div></div>
+        <div class="pillar-mech"><span class="n">02</span><div><h4>Matriz de coherencia integral</h4><p>Cruza proyecto, actividades, áreas de influencia, caracterización, permisos y zonificación.</p></div></div>
+        <div class="pillar-mech"><span class="n">03</span><div><h4>Control de observaciones</h4><p>Matriz con fuente, responsable, fecha de cierre y evidencia. Ninguna observación crítica cierra sin evidencia verificable.</p></div></div>
+        <div class="pillar-mech"><span class="n">04</span><div><h4>Revisión por pares</h4><p>Los productos de mayor complejidad —impactos, zonificación, GDB, resumen ejecutivo— los revisa un profesional distinto al autor.</p></div></div>
+        <div class="pillar-mech"><span class="n">05</span><div><h4>Control de versiones</h4><p>El especialista SIG/GDB responde por la integridad del historial de versiones.</p></div></div>
+      </article>
+
+      <article class="pillar pillar--dark reveal">
+        <span class="pillar-tag">Factor 12.4.4</span>
+        <h3>Analítica de datos y captura en áreas difíciles</h3>
+        <p class="pillar-sub">Metodología en cuatro niveles integrados, aplicables según el alcance del estudio.</p>
+        <div class="pillar-mech"><span class="n">01</span><div><h4>Organización y calidad del dato</h4><p>Limpieza, normalización, validación de campos obligatorios y trazabilidad de soportes.</p></div></div>
+        <div class="pillar-mech"><span class="n">02</span><div><h4>Análisis espacial</h4><p>Cruces entre actividades y restricciones, accesibilidad, vacíos de cobertura de campo.</p></div></div>
+        <div class="pillar-mech"><span class="n">03</span><div><h4>Análisis temático e interdisciplinario</h4><p>Representatividad de muestreos, coherencia línea base–impactos, sensibilidad territorial.</p></div></div>
+        <div class="pillar-mech"><span class="n">04</span><div><h4>Control de calidad y decisión</h4><p>Tableros con semáforos, alertas de inconsistencia y análisis predictivo de riesgo de no conformidad.</p></div></div>
+        <p class="pillar-note">Cada nivel se operativiza con herramientas del InnoLab: formularios QField y Extractor KMZ (nivel 1), Suite GIS (nivel 2), validadores temáticos y validador documental (nivel 3), VALIDA_APP y tablero Power BI (nivel 4).</p>
+        <div class="sovereignty-strip">
+          <span class="dot"></span>
+          <span><strong>Soberanía del dato:</strong> IA de ejecución local (AnythingLLM). La información de bloques exploratorios y estudios no radicados nunca sale del entorno controlado del contratista — a diferencia de plataformas cloud.</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="value-strip reveal">
+      <div class="value-item">
+        <span class="kicker">Antes de campo</span>
+        <strong>Insumos depurados</strong>
+        <p>VALIDA_APP revisa GDB heredadas o entregadas como insumo para evitar que errores previos se propaguen al estudio.</p>
+      </div>
+      <div class="value-item">
+        <span class="kicker">Durante campo</span>
+        <strong>Dato trazable</strong>
+        <p>QField, GEOTAC y protocolos de acceso restringido reducen transcripción manual y pérdida de evidencia primaria.</p>
+      </div>
+      <div class="value-item">
+        <span class="kicker">Antes de entrega</span>
+        <strong>Conformidad verificable</strong>
+        <p>La GDB, los textos, mapas y soportes se cruzan antes de cada entrega parcial y de la radicación final.</p>
+      </div>
+      <div class="value-item">
+        <span class="kicker">Seguimiento ODS</span>
+        <strong>Control visible</strong>
+        <p>Tableros y matrices permiten priorizar hallazgos, responsables y cierres sin esperar la revisión final.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="weave-divider" aria-hidden="true"></div>
+
+<!-- ================= HERRAMIENTAS ================= -->
+<section id="herramientas" class="section section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Portafolio InnoLab</p>
+      <h2>68 herramientas en producción, una hace de columna vertebral</h2>
+      <p>Cada herramienta opera de forma independiente y se activa en la fase donde genera más valor.</p>
+    </div>
+
+    <div class="tool-featured reveal">
+      <div class="tool-featured-info">
+        <p class="eyebrow">Herramienta central — Factor 12.4.1</p>
+        <h3>VALIDA_APP</h3>
+        <p>VALIDA_APP es una aplicación de escritorio desarrollada por GEOTEC para ejecutar 15 módulos de validación sobre la geodatabase del proyecto en modo de solo lectura. Consulta estructura, dominios, relaciones y atributos; no modifica la GDB.</p>
+        <div class="mag-stats">
+          <div><div class="n">242</div><div class="l">Feature classes</div></div>
+          <div><div class="n">308</div><div class="l">Dominios</div></div>
+          <div><div class="n">248</div><div class="l">Relaciones</div></div>
+          <div><div class="n">15</div><div class="l">Módulos activos</div></div>
+        </div>
+        <p>Su valor para Ecopetrol está en anticipar inconsistencias antes de las entregas, con evidencia verificable y controles repetibles alineados con el MAG ANLA.</p>
+        <div class="badge-row">
+          <div class="read-only-badge">
+            <span>Solo lectura</span>
+            <small>El expediente se valida sin alterar datos fuente.</small>
+          </div>
+          <div class="read-only-badge">
+            <span>Cero instalación</span>
+            <small>No requiere programas ni licencias en los equipos de Ecopetrol.</small>
+          </div>
+        </div>
+      </div>
+      <div class="terminal" id="terminal">
+        <div class="t-line"><span class="p">&gt;_</span> validar_gdb --proyecto=EIA_2026</div>
+        <div class="t-line">Cargando geodatabase en modo solo lectura…</div>
+        <div class="t-line ok">✓ Esquema de capas MAG — 242 feature classes OK</div>
+        <div class="t-line ok">✓ Dominios válidos — 308 catálogos OK</div>
+        <div class="t-line ok">✓ Relaciones padre-hijo — 248 relaciones OK</div>
+        <div class="t-line warn">⚠ 2 hallazgos menores en metadatos por capa</div>
+        <div class="t-line ok">15 / 15 módulos ejecutados</div>
+        <div class="t-line">Tiempo total: <span class="p">00:14:52</span></div>
+        <div class="t-line ok">✓ Reporte de conformidad generado<span class="cursor"></span></div>
+      </div>
+    </div>
+
+    <div class="validation-map reveal">
+      <div class="validation-copy">
+        <p class="eyebrow">Cómo opera en el contrato</p>
+        <h3>Validación técnica sin prometer más de lo que la herramienta hace</h3>
+        <p>VALIDA_APP no reemplaza el criterio SIG ni la revisión temática. Lo que sí aporta es una lectura sistemática de la GDB para que el especialista concentre su tiempo en interpretar hallazgos, priorizar correcciones y dejar evidencia de cierre.</p>
+      </div>
+      <div class="validation-steps" aria-label="Flujo operativo de VALIDA_APP">
+        <div class="validation-step"><span>01</span><strong>Seleccionar módulos</strong><p>El especialista activa grupos de validación según fase y tipo de entrega.</p></div>
+        <div class="validation-step"><span>02</span><strong>Ejecutar lectura</strong><p>La herramienta consulta capas, campos, dominios, relaciones y metadatos.</p></div>
+        <div class="validation-step"><span>03</span><strong>Consolidar hallazgos</strong><p>El reporte clasifica inconsistencias para revisión SIG y cierre documental.</p></div>
+        <div class="validation-step"><span>04</span><strong>Dejar trazabilidad</strong><p>El líder de aseguramiento verifica responsables, evidencia y estado de cierre.</p></div>
+      </div>
+    </div>
+
+    <details class="accordion reveal">
+      <summary>Ver los 15 módulos de validación y su cobertura frente al validador institucional de la ANLA <span class="chev">+</span></summary>
+      <div class="accordion-body">
+        <div class="table-scroll">
+        <table class="mini-table">
+          <thead><tr><th>N.º</th><th>Módulo</th><th>Qué verifica</th><th>Frente al validador ANLA</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Esquema de capas MAG</td><td>Presencia de feature classes con nombre, geometría y campos correctos.</td><td class="crit yes">✓ Presencia de capas</td></tr>
+            <tr><td>2</td><td>Campos obligatorios</td><td>Ningún campo requerido con valores equivalentes a vacío (más de 50 variantes semánticas: "n/a", "pendiente", "sin dato"…).</td><td class="crit no">✗ Solo NULL técnico</td></tr>
+            <tr><td>3</td><td>Dominios válidos</td><td>Todo valor codificado pertenece al catálogo de la Resolución 2182.</td><td class="crit yes">✓ Cobertura completa</td></tr>
+            <tr><td>4</td><td>Sistema de referencia espacial</td><td>Todas las capas en el mismo sistema, comparado por igualdad real, no solo por código EPSG.</td><td class="crit no">✗ Solo por código EPSG</td></tr>
+            <tr><td>5</td><td>Coordenadas en rango válido</td><td>Las coordenadas están dentro del territorio colombiano.</td><td class="crit yes">✓ Cobertura completa</td></tr>
+            <tr><td>6</td><td>Geometrías válidas</td><td>Sin geometrías nulas, vacías o auto-intersectantes.</td><td class="crit no">✗ Solo geometrías nulas</td></tr>
+            <tr><td>7</td><td>Relaciones padre-hijo</td><td>Todo registro hijo tiene un padre existente. Detecta huérfanos.</td><td class="crit yes">✓ Cobertura completa</td></tr>
+            <tr><td>8</td><td>Dependencias mutuas entre capas</td><td>Si la capa A existe, las capas B y C relacionadas también deben tener registros.</td><td class="crit no">✗ No verificado</td></tr>
+            <tr><td>9</td><td>Unicidad de identificadores</td><td>Sin claves primarias duplicadas en capas padre.</td><td class="crit yes">✓ Cobertura completa</td></tr>
+            <tr><td>10</td><td>Rangos numéricos</td><td>Áreas, longitudes y concentraciones dentro de rangos plausibles.</td><td class="crit yes">✓ Cobertura completa</td></tr>
+            <tr><td>11</td><td>Actos administrativos</td><td>NUM_ACT_AD, FEC_ACT_AD y ART_ACT_AD diligenciados, coherentes entre sí.</td><td class="crit no">✗ Solo presencia del campo</td></tr>
+            <tr><td>12</td><td>Metadatos por capa</td><td>Extensión espacial y campos de metadatos contra la GDB real.</td><td class="crit no">✗ Solo existencia del archivo</td></tr>
+            <tr><td>13</td><td>LEAME vs. GDB real</td><td>Las capas declaradas en el LEAME existen efectivamente en la GDB.</td><td class="crit no">✗ Sin cruce LEAME–GDB</td></tr>
+            <tr><td>14</td><td>Longitud y formato de texto</td><td>Campos de texto dentro de la longitud máxima del estándar MAG.</td><td class="crit no">✗ No validado</td></tr>
+            <tr><td>15</td><td>Contención espacial</td><td>Las capas están contenidas dentro de UnidadTerritorial y AreaInfluencia.</td><td class="crit no">✗ No validado</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </details>
+
+    <div class="tool-focus reveal">
+      <div class="tool-focus-head">
+        <p class="eyebrow">Herramientas recurrentes en la propuesta</p>
+        <h3>Las capacidades que más soportan el flujo técnico</h3>
+        <p>Estas herramientas aparecen de forma transversal en el documento porque conectan captura, validación, cierre documental y seguimiento de la ODS.</p>
+      </div>
+      <div class="tool-focus-grid">
+        <article class="tool-focus-card">
+          <span class="tag">Campo · QField</span>
+          <h4>Formularios digitales por componente</h4>
+          <p>20 formularios para captura sin conexión, con dominios MAG ANLA precargados y sincronización directa a la base de datos. Reducen transcripción manual y pérdida de información en zonas sin cobertura.</p>
+        </article>
+        <article class="tool-focus-card">
+          <span class="tag">Post-campo · LEAME</span>
+          <h4>Generador de LEAME</h4>
+          <p>Produce el archivo LEAME base con estructura, justificaciones tipo, subtipos y directorios de insumos cartográficos, en correspondencia con la Resolución 2182.</p>
+        </article>
+        <article class="tool-focus-card">
+          <span class="tag">Cierre · Metadatos</span>
+          <h4>Metadatos ISO 19115</h4>
+          <p>Genera y revisa metadatos por capa conforme al formato ANLA, dejando una lista de conformidad con hallazgos descritos para el cierre documental.</p>
+        </article>
+        <article class="tool-focus-card">
+          <span class="tag">Biótico · suficiencia</span>
+          <h4>Curvas de acumulación</h4>
+          <p>Calcula completitud y suficiencia estadística del muestreo biológico para decidir en campo si el tamaño de muestra es adecuado antes de cerrar la jornada.</p>
+        </article>
+        <article class="tool-focus-card">
+          <span class="tag">Control · Excel</span>
+          <h4>Validadores temáticos</h4>
+          <p>Validadores por componente del MAG: flora, fauna, hidrología, agua, aire, ruido, suelos, socioeconómico, predial, arqueología, paisaje y UAS, con dominios y reglas precargadas.</p>
+        </article>
+        <article class="tool-focus-card">
+          <span class="tag">Gestión · Power BI</span>
+          <h4>Seguimiento de PDT y ODS</h4>
+          <p>Tablero con porcentaje de avance, responsables, fechas límite, semáforos por entregable y alertas de vencimiento para dar visibilidad operativa al supervisor.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="tool-grid">
+      <div class="tool-card reveal"><span class="tag">Automatización SIG</span><h4>Suite GIS — Python Toolbox</h4><p>37 módulos ArcPy: recálculo masivo de áreas, longitudes y coordenadas, clip con reproyección automática y fusión de GDBs.</p></div>
+      <div class="tool-card reveal"><span class="tag">Captura digital</span><h4>Formularios QField (×20)</h4><p>Captura offline con dominios MAG precargados. Sincronización directa a la geodatabase, sin transcripción manual.</p></div>
+      <div class="tool-card reveal"><span class="tag">Control de calidad</span><h4>Validadores Excel temáticos (×12)</h4><p>Un validador por componente del MAG — flora, fauna, hidrología, aire, socioeconómico y más — con dominios precargados.</p></div>
+      <div class="tool-card reveal"><span class="tag">Gestión documental</span><h4>Validador documental de Lab Ambiental</h4><p>Audita informes PDF de laboratorios acreditados IDEAM y verifica coherencia frente a los registros de la GDB.</p></div>
+      <div class="tool-card reveal"><span class="tag">Conversión de datos</span><h4>Extractor KMZ</h4><p>Procesa archivos KMZ de hasta 800 MB de campos de Ecopetrol para extracción de geometría y atributos, listos para la GDB.</p></div>
+      <div class="tool-card reveal"><span class="tag">Inteligencia artificial</span><h4>AnythingLLM local</h4><p>Búsqueda y cruce documental con IA de ejecución local. La información de Ecopetrol nunca sale del entorno controlado.</p></div>
+      <div class="tool-card reveal"><span class="tag">Analítica visual</span><h4>Tablero Power BI</h4><p>Seguimiento del PDT en tiempo real, semáforos por entregable y alertas de vencimiento para el supervisor de ODS.</p></div>
+      <div class="tool-card reveal"><span class="tag">Precisión en campo</span><h4>GEOTAC — Registro Fotográfico v2.0</h4><p>Captura fotográfica georreferenciada con coordenadas MAGNA-SIRGAS, hora, autor y vínculo directo a la GDB.</p></div>
+      <div class="tool-card reveal"><span class="tag">Biótico avanzado</span><h4>Curvas de acumulación</h4><p>Calculadora de suficiencia estadística en campo: el biólogo sabe si el muestreo alcanza antes de terminar la jornada.</p></div>
+      <div class="tool-card reveal"><span class="tag">Conversión · fotografía</span><h4>Extractor JPG a XLS</h4><p>Consolida el registro fotográfico en un formato Excel con nombre de archivo, coordenadas en WGS84 y proyección nacional, y miniatura de cada imagen procesada.</p></div>
+      <div class="tool-card reveal"><span class="tag">IA · protocolo de uso</span><h4>Modelos de lenguaje con protocolo</h4><p>Asistentes de IA para análisis de normativa pública y preparación de respuestas regulatorias, bajo un protocolo estricto: la información confidencial del expediente se procesa exclusivamente en el entorno local.</p></div>
+      <div class="tool-card reveal"><span class="tag tag--dev">En desarrollo · Anexo 38</span><h4>Exportador SiB Colombia / GBIF</h4><p>Convertirá los registros bióticos de la GDB validada al esquema Darwin Core para publicación en SiB Colombia y carga al IPT del GBIF, reduciendo la transcripción manual de metadatos.</p></div>
+    </div>
+
+    <div class="portfolio-maturity reveal">
+      <div>
+        <p class="eyebrow">Madurez del portafolio</p>
+        <h3>Producción y beta con uso controlado</h3>
+      </div>
+      <div class="maturity-bars">
+        <div class="maturity-row">
+          <span>Producción activa</span>
+          <div class="bar"><i style="width:62%"></i></div>
+          <strong>68</strong>
+        </div>
+        <div class="maturity-row">
+          <span>Fase beta</span>
+          <div class="bar beta"><i style="width:17%"></i></div>
+          <strong>19</strong>
+        </div>
+        <div class="maturity-row">
+          <span>En formulación</span>
+          <div class="bar total"><i style="width:21%"></i></div>
+          <strong>23</strong>
+        </div>
+      </div>
+      <p>Catálogo total: 110 iniciativas InnoLab. Las herramientas beta y en formulación se presentan como capacidad instalada y ruta de evolución del portafolio, no como obligación de alcance si la orden de servicio no lo requiere.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ALIANZA / EVIDENCIA ================= -->
+<section id="alianza" class="section">
+  <img src="assets/animal_lorito_web.png" alt="" class="alliance-fauna" aria-hidden="true" loading="lazy">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Evidencia y alineación</p>
+      <h2>No son herramientas nuevas para esta licitación</h2>
+      <p>Cada instrumento tiene historial documentado de uso real, con clientes del sector hidrocarburos colombiano.</p>
+    </div>
+
+    <div class="evidence-grid reveal">
+      <div class="evidence-card">
+        <div class="num">1d → <span data-count="15">0</span><span class="unit">min</span></div>
+        <div class="l">Validación completa de GDB con VALIDA_APP en proyectos de cumplimiento ambiental del sector hidrocarburos.</div>
+      </div>
+      <div class="evidence-card">
+        <div class="num"><span data-count="20">0</span></div>
+        <div class="l">Formularios QField activos en campañas de campo y gestoría ambiental para diversos proyectos con Frontera Energy.</div>
+      </div>
+    </div>
+
+    <div class="geo-ecopetrol reveal" aria-label="Mapa de trayectoria GEOTEC y Ecopetrol">
+      <div class="geo-map-panel">
+        <div id="ecopetrol-map" class="ecopetrol-map" aria-label="Mapa de proyectos desarrollados con Ecopetrol en Colombia">
+          <div class="map-loading">Cargando mapa...</div>
+        </div>
+        <p>Algunos de los proyectos que hemos construido juntos.</p>
+      </div>
+      <div class="geo-stats">
+        <span class="geo-badge">Presencia geográfica</span>
+        <article class="geo-stat-card">
+          <strong>51</strong>
+          <span>proyectos desarrollados con Ecopetrol S.A.</span>
+        </article>
+        <article class="geo-stat-card geo-stat-card--big">
+          <strong>ECOPETROL S.A.</strong>
+          <span>trayectoria consolidada de proyectos desarrollados en conjunto</span>
+        </article>
+        <article class="geo-stat-card geo-stat-card--label">
+          <strong>4</strong>
+          <span><b>departamentos</b>: Meta, Casanare, Huila y Norte de Santander</span>
+        </article>
+        <article class="geo-stat-card geo-stat-card--small">
+          <strong>46</strong>
+          <span>proyectos concentrados en Meta y Casanare, corredor operativo clave de la trayectoria conjunta</span>
+        </article>
+      </div>
+    </div>
+
+    <div class="alliance-panel reveal">
+      <div class="alliance-copy">
+        <h3>Alineado con la Estrategia 2040 de Ecopetrol</h3>
+        <p>Esta propuesta se enmarca en el propulsor <strong>Generación de Valor con SosTECnibilidad</strong> (Guía GEE-G-044) y materializa su dimensión TEC: ciencia, tecnología e innovación digital aplicadas al licenciamiento ambiental.</p>
+        <p>Las herramientas del InnoLab respaldan directamente los compromisos del elemento material Biodiversidad y Servicios Ecosistémicos: Impacto Neto Positivo al 2050, Deforestación Neta Cero en operaciones directas y publicación de registros en SiB Colombia y GBIF.</p>
+        <p><strong>Extensible a la ruta multienergética.</strong> Las herramientas fueron desarrolladas sobre los TDR de hidrocarburos, pero el MAG ANLA es el estándar de entrega para todos los tipos de EIA: a medida que Ecopetrol desarrolle proyectos solares, eólicos o PCH bajo su Estrategia 2040, las mismas herramientas de validación, captura y aseguramiento aplican sin modificaciones estructurales.</p>
+      </div>
+      <div class="alliance-badges">
+        <div class="alliance-badge"><span class="num">68+19</span><span class="txt">herramientas en producción activa y en beta al cierre de 2025 — catálogo InnoLab de 110 iniciativas, el resto en formulación</span></div>
+        <div class="alliance-badge"><span class="num">3×1</span><span class="txt">revisiones cruzadas por entrega: SIG, especialista temático y líder de proyecto</span></div>
+        <div class="alliance-badge"><span class="num">0%</span><span class="txt">de la información sensible de Ecopetrol sale a la nube — IA de ejecución local</span></div>
+        <div class="alliance-badge"><span class="num">70K+</span><span class="txt">registros biológicos de Ecopetrol en SiB Colombia — GEOTEC integra al flujo post-campo las plantillas Darwin Core desde la GDB validada (Anexo 38)</span></div>
+        <div class="alliance-badge"><span class="num">+10%</span><span class="txt">de reducción en los tiempos de los procesos instrumentados — ganancia que se reinvierte en el propio proyecto para asegurar y mejorar productos y procesos</span></div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:3rem;">
+      <p style="font-family:var(--font-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:1rem;">Marco normativo y de referencia</p>
+      <div class="norm-strip">
+        <span class="norm-pill"><b>Res. 2182/2016</b> · MAG ANLA</span>
+        <span class="norm-pill"><b>HSE-G-163</b> · Anexos 1, 6, 8, 9</span>
+        <span class="norm-pill"><b>Decreto 1076</b> de 2015</span>
+        <span class="norm-pill"><b>TDR HI-TER-1-03</b></span>
+        <span class="norm-pill"><b>GDE-P-008</b> · Consulta previa</span>
+        <span class="norm-pill"><b>GDE-G-006</b> · Comunidades étnicas</span>
+        <span class="norm-pill"><b>GEE-G-044</b> · SosTECnibilidad</span>
+        <span class="norm-pill"><b>Anexo 38</b> · SiB Colombia</span>
+        <span class="norm-pill"><b>GSE-G-007</b> · UAS</span>
+        <span class="norm-pill"><b>HSE-F-665</b> · Acta de avance</span>
+        <span class="norm-pill"><b>ANLA</b> · Informe de Gestión 2024 · Rendición de Cuentas 2024-2025</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DOCUMENTO DE RESPALDO ================= -->
+<section id="documento" class="section section-brand">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Para mayor información</p>
+      <h2>Este resumen se sustenta en el documento técnico completo</h2>
+      <p>Cada sección de esta presentación condensa un capítulo de la propuesta técnica formal. El documento completo amplía la metodología por fases, las tablas de herramientas con sus entregables, los 16 documentos normativos de referencia, las evidencias de uso en producción y las exclusiones de alcance.</p>
+    </div>
+    <div class="doc-chip reveal"><span class="dot"></span>Propuesta Técnica — Factores 12.4.1 y 12.4.4</div>
+    <div class="hero-cta-row reveal">
+      <a class="btn" href="mailto:comercial@geotecingenieria.com?subject=Solicitud%20documento%20t%C3%A9cnico%20%E2%80%94%20Factores%2012.4.1%20y%2012.4.4">Solicitar el documento completo</a>
+      <a class="btn btn-ghost" href="#inicio">Volver al inicio</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <img src="assets/logo_geotec_horizontal_star.png" alt="GEOTEC Ingeniería Ltda." class="footer-logo" width="549" height="143">
+        <p>Generando valor con SosTECnibilidad para el sector energético en Colombia. GEOTEC InnoLab: 68 herramientas en producción activa y 19 en beta, dentro de un catálogo de 110 iniciativas en evolución continua.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Propuesta</h4>
+        <a href="#diagnostico">Diagnóstico</a>
+        <a href="#metodologia">Metodología</a>
+        <a href="#aseguramiento">Factores 12.4.1 y 12.4.4</a>
+        <a href="#herramientas">Herramientas</a>
+        <a href="#documento">Documento técnico completo</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="mailto:comercial@geotecingenieria.com">comercial@geotecingenieria.com</a>
+        <a href="#inicio">Bogotá, Colombia</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 GEOTEC Ingeniería Ltda.</span>
+      <span>Los estudios, GDB rigurosamente elaboradas e informes se entregan a Ecopetrol — el software que los genera es propiedad intelectual exclusiva de GEOTEC y no se transfiere.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="scripts/ecopetrol-geodata.js"></script>
+<script src="scripts/ecopetrol-geovisor.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
