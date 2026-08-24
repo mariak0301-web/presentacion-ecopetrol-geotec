@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Cascada (stagger) en cuadrículas ---------- */
   const staggerGrids = document.querySelectorAll(
-    '.team-grid, .card-grid, .tool-focus-grid, .evidence-grid, .validation-steps, .expertise-flow, .value-strip, .hero-stats, .alliance-badges, .mag-stats'
+    '.team-grid, .card-grid, .tool-focus-grid, .evidence-grid, .validation-steps, .expertise-flow, .value-strip, .hero-stats, .alliance-badges, .mag-stats, .channel-grid, .why-grid, .scale-grid, .route-grid, .perm-flow, .limits-grid'
   );
   staggerGrids.forEach(grid => {
     Array.from(grid.children).forEach((child, i) => {
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Spotlight en tarjetas ---------- */
   if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
-    document.querySelectorAll('.tool-card, .tool-focus-card, .evidence-card, .team-item, .pillar').forEach(card => {
+    document.querySelectorAll('.tool-card, .tool-focus-card, .evidence-card, .team-item, .pillar, .channel-card, .why-card, .scale-card, .route-card').forEach(card => {
       card.addEventListener('pointermove', e => {
         const r = card.getBoundingClientRect();
         card.style.setProperty('--mx', `${e.clientX - r.left}px`);
@@ -120,6 +120,157 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  /* ---------- Carrusel horizontal ---------- */
+  document.querySelectorAll('[data-carrusel]').forEach(carrusel => {
+    const pista = carrusel.querySelector('.carrusel-pista');
+    if (!pista) return;
+    const izq = carrusel.querySelector('.carrusel-flecha--izq');
+    const der = carrusel.querySelector('.carrusel-flecha--der');
+    const paso = () => pista.firstElementChild
+      ? pista.firstElementChild.getBoundingClientRect().width + 1
+      : pista.clientWidth * 0.8;
+
+    // Sombras y flechas según lo que quede por recorrer a cada lado.
+    const margen = 2;
+    const estado = () => {
+      const resta = pista.scrollWidth - pista.clientWidth - pista.scrollLeft;
+      carrusel.classList.toggle('hay-izq', pista.scrollLeft > margen);
+      carrusel.classList.toggle('hay-der', resta > margen);
+    };
+    pista.addEventListener('scroll', estado, { passive: true });
+    window.addEventListener('resize', estado, { passive: true });
+    estado();
+
+    izq && izq.addEventListener('click', () => pista.scrollBy({ left: -paso() }));
+    der && der.addEventListener('click', () => pista.scrollBy({ left: paso() }));
+
+    // Rueda del ratón: solo se captura mientras el carrusel pueda avanzar en
+    // esa dirección; en los extremos el scroll vuelve a la página.
+    pista.addEventListener('wheel', e => {
+      if (e.ctrlKey) return;
+      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (!delta) return;
+      const resta = pista.scrollWidth - pista.clientWidth - pista.scrollLeft;
+      const puede = delta > 0 ? resta > margen : pista.scrollLeft > margen;
+      if (!puede) return;
+      e.preventDefault();
+      pista.scrollLeft += delta;
+    }, { passive: false });
+
+    // Arrastrar con el puntero.
+    let arrastre = null;
+    pista.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'touch') return;   // el táctil ya desplaza solo
+      arrastre = { x: e.clientX, inicio: pista.scrollLeft };
+      pista.classList.add('arrastrando');
+      pista.setPointerCapture(e.pointerId);
+    });
+    pista.addEventListener('pointermove', e => {
+      if (!arrastre) return;
+      pista.scrollLeft = arrastre.inicio - (e.clientX - arrastre.x);
+    });
+    const soltar = () => { arrastre = null; pista.classList.remove('arrastrando'); };
+    pista.addEventListener('pointerup', soltar);
+    pista.addEventListener('pointercancel', soltar);
+
+    // Teclado, para quien no usa ratón.
+    pista.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); pista.scrollBy({ left: paso() }); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); pista.scrollBy({ left: -paso() }); }
+    });
+  });
+
+  /* ---------- Slider editorial de roles ---------- */
+  document.querySelectorAll('[data-rol-slider]').forEach(slider => {
+    const pista = slider.querySelector('.rol-pista');
+    const puntos = slider.querySelector('.rol-puntos');
+    if (!pista) return;
+    const laminas = Array.from(pista.querySelectorAll('.rol-lamina'));
+    if (!laminas.length) return;
+    const margen = 2;
+
+    // Paginación
+    const botones = laminas.map((_, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'rol-punto';
+      b.setAttribute('aria-label', `Ir al rol ${i + 1}`);
+      b.addEventListener('click', () => laminas[i].scrollIntoView({
+        behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'center'
+      }));
+      puntos && puntos.appendChild(b);
+      return b;
+    });
+
+    // Parallax: cada panel se desplaza según lo lejos que esté su lámina
+    // del centro del carril. En reposo todo queda en su sitio.
+    const pintar = () => {
+      const caja = pista.getBoundingClientRect();
+      const centro = caja.left + caja.width / 2;
+      let activa = 0, mejor = Infinity;
+      laminas.forEach((lam, i) => {
+        const r = lam.getBoundingClientRect();
+        const d = (r.left + r.width / 2 - centro) / caja.width;
+        if (Math.abs(d) < mejor) { mejor = Math.abs(d); activa = i; }
+        if (!reduceMotion) {
+          lam.querySelectorAll('.rol-panel').forEach(p => {
+            const f = parseFloat(p.dataset.par || 0);
+            p.style.transform = `translateY(${(d * f).toFixed(2)}px)`;
+          });
+        }
+      });
+      botones.forEach((b, i) => b.classList.toggle('activo', i === activa));
+    };
+    // Flechas: aparecen solo mientras quede recorrido en esa dirección.
+    const izq = slider.querySelector('.rol-flecha--izq');
+    const der = slider.querySelector('.rol-flecha--der');
+    const paso = () => laminas[0].getBoundingClientRect().width + 22;
+    izq && izq.addEventListener('click', () => pista.scrollBy({ left: -paso() }));
+    der && der.addEventListener('click', () => pista.scrollBy({ left: paso() }));
+    const bordes = () => {
+      const resta = pista.scrollWidth - pista.clientWidth - pista.scrollLeft;
+      slider.classList.toggle('hay-izq', pista.scrollLeft > margen);
+      slider.classList.toggle('hay-der', resta > margen);
+    };
+
+    pista.addEventListener('scroll', () => { pintar(); bordes(); }, { passive: true });
+    window.addEventListener('resize', () => { pintar(); bordes(); }, { passive: true });
+    pintar(); bordes();
+
+    // Rueda: solo mientras quede recorrido en esa dirección.
+    pista.addEventListener('wheel', e => {
+      if (e.ctrlKey) return;
+      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (!delta) return;
+      const resta = pista.scrollWidth - pista.clientWidth - pista.scrollLeft;
+      if (delta > 0 ? resta <= margen : pista.scrollLeft <= margen) return;
+      e.preventDefault();
+      pista.scrollLeft += delta;
+    }, { passive: false });
+
+    // Arrastre con el puntero.
+    let arrastre = null;
+    pista.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'touch') return;
+      arrastre = { x: e.clientX, inicio: pista.scrollLeft };
+      pista.classList.add('arrastrando');
+      pista.setPointerCapture(e.pointerId);
+    });
+    pista.addEventListener('pointermove', e => {
+      if (!arrastre) return;
+      pista.scrollLeft = arrastre.inicio - (e.clientX - arrastre.x);
+    });
+    const soltar = () => { arrastre = null; pista.classList.remove('arrastrando'); };
+    pista.addEventListener('pointerup', soltar);
+    pista.addEventListener('pointercancel', soltar);
+
+    // Teclado.
+    pista.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); pista.scrollBy({ left: paso() }); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); pista.scrollBy({ left: -paso() }); }
+    });
+  });
 
   /* ---------- Botón volver arriba ---------- */
   const toTop = document.createElement('button');

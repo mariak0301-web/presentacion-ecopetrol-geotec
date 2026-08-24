@@ -9,7 +9,9 @@ Presentación web estática para la propuesta técnica de aseguramiento ambienta
 - `script.js`: interacción general de la presentación.
 - `scripts/`: datos y lógica del geovisor Ecopetrol.
 - `assets/`: logos, fauna, fondos, clientes e insumos geográficos filtrados.
+- `assets/apps/`: capturas de interfaz de los aplicativos GEOTEC (fuente: `PANTALLAZOS/`).
 - `vendor/leaflet/`: dependencia local para el mapa interactivo.
+- `Presentacion_Portable.html`: **archivo generado**, no se edita a mano.
 
 ## Uso local
 
@@ -24,6 +26,27 @@ Luego abrir:
 ```text
 http://localhost:8018/index.html
 ```
+
+## Versión portable
+
+`Presentacion_Portable.html` es un único archivo autocontenido —CSS, JS,
+imágenes y GeoJSON embebidos— pensado para enviarse por correo o abrirse sin la
+carpeta. **Se genera; no se edita.** Después de tocar `index.html`, `styles.css`
+o `script.js`:
+
+```powershell
+python CODE/construir_portable_marco.py
+```
+
+El script reporta los recursos incrustados y falla de forma visible si queda
+alguna referencia local sin resolver.
+
+## Correspondencia con la propuesta
+
+El contenido es trazable a
+`PROPUESTA/PROPUESTA_TECNICA_FACTORES_1241_1244_V8_AUDITADA_TRAZABILIDAD_ALBA.docx`.
+Cuando el documento cambie, esta presentación debe revisarse contra él: las
+cifras, los nombres de proyecto y los compromisos de alcance no deben divergir.
 
 ## Nota de confidencialidad
 
