@@ -11,7 +11,7 @@ Presentación web estática para la propuesta técnica de aseguramiento ambienta
 - `assets/`: logos, fauna, fondos, clientes e insumos geográficos filtrados.
 - `assets/apps/`: capturas de interfaz de los aplicativos GEOTEC (fuente: `PANTALLAZOS/`).
 - `vendor/leaflet/`: dependencia local para el mapa interactivo.
-- `Presentacion_Portable.html`: **archivo generado**, no se edita a mano.
+- `Presentacion_Portable.html`: archivo generado localmente; no se versiona en GitHub.
 
 ## Uso local
 
@@ -31,8 +31,8 @@ http://localhost:8018/index.html
 
 `Presentacion_Portable.html` es un único archivo autocontenido —CSS, JS,
 imágenes y GeoJSON embebidos— pensado para enviarse por correo o abrirse sin la
-carpeta. **Se genera; no se edita.** Después de tocar `index.html`, `styles.css`
-o `script.js`:
+carpeta. **Se genera localmente; no se publica en GitHub.** Después de tocar
+`index.html`, `styles.css` o `script.js`:
 
 ```powershell
 python CODE/construir_portable_marco.py

@@ -25,4 +25,5 @@ build/
 *.bak
 *.tmp
 *.zip
+Presentacion_Portable.html
 assets/geo/proyectos_todos.geojson
